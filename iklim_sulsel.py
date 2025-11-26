@@ -11,7 +11,7 @@ st.set_page_config(page_title="📊 Dashboard Prediksi Iklim", layout="wide")
 # ========== 1️⃣ LOAD DATA ==========
 @st.cache_data
 def load_data():
-    df = pd.read_excel("Data Jawa Timur_Putri Nurhikmah.xlsx", sheet_name="Data Harian - Table")
+    df = pd.read_excel("Data sulsel_SULSEL.xlsx", sheet_name="Data Harian - Table")
     df = df.loc[:, ~df.columns.duplicated()]
     if "kecepatan_angin" in df.columns:
         df = df.rename(columns={"kecepatan_angin":"FF_X"})
@@ -22,7 +22,7 @@ def load_data():
 
 df = load_data()
 
-wilayah = "Jawa Timur"
+wilayah = "sulsel"
 st.title(f"🌦️ Dashboard Analisis & Prediksi Iklim — {wilayah}")
 
 
@@ -139,6 +139,7 @@ csv = future.to_csv(index=False).encode("utf8")
 st.download_button(
     "📥 Download Dataset Prediksi",
     data=csv,
-    file_name="prediksi_jawa_timur.csv",
+    file_name="prediksi_sulsel.csv",
     mime="text/csv"
 )
+
